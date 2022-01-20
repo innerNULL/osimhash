@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+
+# Vim trash
+*.un~
+
+# Rules
+build
