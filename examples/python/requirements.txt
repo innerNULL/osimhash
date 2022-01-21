@@ -1,0 +1,2 @@
+#https://ghproxy.com/https://github.com/LIAAD/yake/archive/refs/tags/v0.4.4.zip
+https://ghproxy.com/https://github.com/stanfordnlp/stanza/archive/refs/heads/dev.zip

@@ -3,7 +3,7 @@
 
 
 if(${CMAKE_VERSION} VERSION_GREATER "3.16.0" 
-    AND PYBIND)
+    AND ${OSIMHASH_PY_BIND})
   message(
     STATUS
     "CMake version is eligible for py-binding and py-binding flag is '${PYBIND}'.")
@@ -13,7 +13,7 @@ if(${CMAKE_VERSION} VERSION_GREATER "3.16.0"
 
   FetchContent_Declare(
     pybind_pybind11
-    GIT_REPOSITORY https://github.com.cnpmjs.org/pybind/pybind11.git 
+    GIT_REPOSITORY https://${GIT_HOST}/pybind/pybind11.git 
     GIT_TAG v2.9.0 
     GIT_PROGRESS TRUE)
   FetchContent_MakeAvailable(pybind_pybind11)
@@ -25,4 +25,5 @@ if(${CMAKE_VERSION} VERSION_GREATER "3.16.0"
 
   pybind11_add_module(
     pyosimhash ${PROJECT_SOURCE_DIR}/bindings/python/pymodule.cpp)
+  add_dependencies(pyosimhash simhash)
 endif()

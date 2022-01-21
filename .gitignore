@@ -31,8 +31,12 @@
 *.out
 *.app
 
+# Python
+__pycache__
+
 # Vim trash
 *.un~
 
 # Rules
 build
+_*

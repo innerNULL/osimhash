@@ -5,6 +5,8 @@
 cmake_minimum_required(VERSION 3.14)
 project(osimhash)
 
+include(FetchContent)
+include(ExternalProject)
 
 # No compiling optimization, very slow
 #set(CMAKE_CXX_FLAGS "-fopenmp") 
@@ -13,22 +15,27 @@ set(CMAKE_CXX_FLAGS
   "-fopenmp -pthread -std=c++14 -funroll-loops -O3 -march=native")
 
 
-option(BENCHMARK "Benchmarking." ON)
-option(PYBIND "Builds python binder." ON)
+option(OSIMHASH_BENCHMARK "Benchmarking." ON)
+option(OSIMHASH_PY_BIND "Builds python binder." ON)
 
 
-include(FetchContent)
 set(FETCHCONTENT_QUIET FALSE)
+set(GIT_HOST "ghproxy.com/https://github.com")
 
 
-FetchContent_Declare(
-  yanyiwu_simhash 
-  GIT_REPOSITORY https://github.com.cnpmjs.org/yanyiwu/simhash.git 
+ExternalProject_Add(
+  simhash
+  PREFIX _exts 
+  GIT_REPOSITORY https://${GIT_HOST}/yanyiwu/simhash.git  
   GIT_TAG master 
-  GIT_PROGRESS TRUE)
-FetchContent_MakeAvailable(yanyiwu_simhash)
-include_directories(${yanyiwu_simhash_SOURCE_DIR}/deps)
-include_directories(${yanyiwu_simhash_SOURCE_DIR}/include)
+  CMAKE_ARGS 
+      -DBENCHMARK=OFF 
+      -DCMAKE_INSTALL_PREFIX=<INSTALL_DIR> 
+  BUILD_COMMAND "" 
+  INSTALL_COMMAND "")
+ExternalProject_Get_Property(simhash source_dir)
+include_directories(${source_dir}/include)
+include_directories(${source_dir}/deps)
 
 
 include_directories(${PROJECT_SOURCE_DIR}/include)

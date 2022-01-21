@@ -17,10 +17,10 @@ namespace simhash_benchmark {
 
 
 Simhasher simhasher(
-  "./_deps/yanyiwu_simhash-src/dict/jieba.dict.utf8", 
-  "./_deps/yanyiwu_simhash-src/dict/hmm_model.utf8", 
-  "./_deps/yanyiwu_simhash-src/dict/idf.utf8", 
-  "./_deps/yanyiwu_simhash-src/dict/stop_words.utf8");
+  "./_exts/src/simhash/dict/jieba.dict.utf8", 
+  "./_exts/src/simhash/dict/hmm_model.utf8", 
+  "./_exts/src/simhash/dict/idf.utf8", 
+  "./_exts/src/simhash/dict/stop_words.utf8");
 
 
 /// Text with length 50 chars.
